@@ -1,7 +1,8 @@
 ﻿var app = angular.module("NightOut", ["ngRoute"]);
 
 app.config(["$routeProvider", function ($routeProvider) {
-    $routeProvider.when("/",
+    $routeProvider
+        .when("/",
         {
             templateUrl: "app/Partials/login.html",
             controller: "LoginController"
@@ -20,6 +21,10 @@ app.config(["$routeProvider", function ($routeProvider) {
         {
             templateUrl: "app/Partials/login.html",
             controller: "LoginController"
+        }).when("/crawlMap",
+        {
+            templateUrl: "app/Partials/crawlMap.html",
+            controller: "CrawlMapController"
         })
 }])
 

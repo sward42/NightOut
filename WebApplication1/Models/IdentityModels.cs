@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
+using System.Data.Entity;
 
 namespace WebApplication1.Models
 {
@@ -26,6 +27,8 @@ namespace WebApplication1.Models
         }
 
         //public DbSet<Bar> Bars { get; set; }
+        public DbSet<Destination> Destinations { get; set; }
+        public DbSet<Itinerary> Itineraries { get; set; }
         
         public static ApplicationDbContext Create()
         {

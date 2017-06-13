@@ -27,7 +27,8 @@ namespace WebApplication1
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                       "~/Scripts/angular.js",
                       "~/Scripts/angular-route.js",
-                      "~/app/app.js")
+                      "~/app/app.js",
+                      "~/app/Factories/GoogleMapsFactory.js")
                       .IncludeDirectory("~/app", "*.js", true));
         }
     }
