@@ -44,6 +44,7 @@
             });
 
             $scope.markers = [];
+            $scope.places = [];
 
             // Listen for the event fired when the user selects a prediction and retrieve
             // more details for that place.
@@ -106,15 +107,25 @@
 
         initAutocomplete();
 
-        $scope.newPlace = {};
 
-        $scope.addSearchPlace = function (place) {
-            $scope.newPlace.name = place.name;
-            $scope.newPlace.isSelected = false;
-            $scope.newPlace.uid = $rootScope.user.uid;
-            NewFactory.postNewPlace($scope.newPlace).then(function (placeId) {
-                $location.url("/main");
-                $scope.newPlace = {};
+        $scope.addDestination = function (place) {
+            console.log("place", place)
+            $http({
+                url: '/api/destination',
+                method: 'post',
+                data: {
+                    Name: place.name,
+                    Address: place.formatted_address,
+                    PlaceId: place.place_id,
+                    Rating: place.rating,
+                    PriceLevel: place.price_level,
+                    Neighborhood: "General"
+
+                }
+            })
+
+            .then(function (result) {
+               console.log("save result", result)
             });
         };
     }

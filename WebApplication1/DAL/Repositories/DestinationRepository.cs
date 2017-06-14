@@ -9,19 +9,31 @@ namespace WebApplication1.Repositories
 {
     public class DestinationRepository : IDestinationRepository
     {
+        private readonly ApplicationDbContext _context;
+        public DestinationRepository(ApplicationDbContext context)
+        {
+            _context = context;
+        }
         public void DeleteDestination(int destinationId)
         {
-            throw new NotImplementedException();
+            var destinationToDelete = GetSingleDestination(destinationId);
+            _context.Destinations.Remove(destinationToDelete);
+            _context.SaveChanges();
         }
 
         public IEnumerable<Destination> GetAllDestinations()
         {
-            throw new NotImplementedException();
+            return _context.Destinations;
         }
 
         public void SaveDestination(Destination destination)
         {
-            throw new NotImplementedException();
+            _context.Destinations.Add(destination);
+            _context.SaveChanges();
+        }
+        public Destination GetSingleDestination (int destinationId)
+        {
+            return _context.Destinations.Find(destinationId);
         }
     }
 }

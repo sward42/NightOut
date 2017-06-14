@@ -7,10 +7,11 @@ using WebApplication1.Models;
 
 namespace WebApplication1.DAL.Interfaces
 {
-    interface IDestinationRepository
+    public interface IDestinationRepository
     {
         void SaveDestination(Destination destination);
         IEnumerable<Destination> GetAllDestinations();
         void DeleteDestination(int destinationId);
+        Destination GetSingleDestination(int destinationId);
     }
 }
