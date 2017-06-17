@@ -2,6 +2,10 @@
 <div id="map" style="width: 500px; height:500px"></div>
 <div ng-repeat="place in places">
     <p>{{place.name}}</p>
+    <select ng-model="neighborhoodSelect">
+        <option value="General">General</option>
+        <option value="12 South">12 South</option>
+    </select>
     <input type="button" value="Save" ng-click="addDestination(place)" />
 </div>
 <input type="button" value="Create Itinerary" ng-click="itineraryPage()" />

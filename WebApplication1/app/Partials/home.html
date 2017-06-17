@@ -1,14 +1,5 @@
 ﻿<div>Welcome Home</div>
 
-<div>
-    <input type="text" placeholder="Enter Location" id="searchLocation" ng-model="SearchText"/>
-    <input type="button" value="Bar List" id="searchBtn" class="btn-default" ng-click="searchApi()"/>
-</div>
 
-<div id="barListOutput" ng-repeat="bar in barData" >
-    
-        <p>{{bar.business_name}}</p>
-    
-</div>
 <input type="button" value="Search Map" class="btn-default" ng-click="getMap()" />
 <input type="button" value="logout" class="btn-default" ng-click="logout()" />

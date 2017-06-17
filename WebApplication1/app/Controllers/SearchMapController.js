@@ -108,6 +108,7 @@
 
         initAutocomplete();
 
+        console.log($scope.neighborhoodSelect);
 
         $scope.addDestination = function (place) {
             console.log("place", place)
@@ -120,7 +121,7 @@
                     PlaceId: place.place_id,
                     Rating: place.rating,
                     PriceLevel: place.price_level,
-                    Neighborhood: "General"
+                    Neighborhood: $scope.neighborhoodSelect
 
                 }
             })

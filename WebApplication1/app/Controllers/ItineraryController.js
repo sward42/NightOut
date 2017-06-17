@@ -45,7 +45,7 @@
                 });
             }
 
-// Not saving to db; structure map issue: not recognizing model type
+
             $scope.saveMyItinerary = function (myStops, myItinerary) {
                 for (var i = 1; i <= myStops.length; i++) {
                     myItinerary['Stop'+i] = myStops[i-1].Id;
