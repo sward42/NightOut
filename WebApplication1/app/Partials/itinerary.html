@@ -1,0 +1,23 @@
+﻿<h3>My Places</h3>
+<div ng-repeat="place in response">
+    
+    <p>{{place.Name}}</p>
+    <input type="button" value="Add to Itinerary" ng-click="addStop(place)" />
+    <input type="button" value="Delete" ng-click="deletePlace(place.Id)" />
+</div>
+<div>
+    <h3>My Itinerary</h3>
+    <ol >
+        <li ng-repeat="stop in myStops">{{stop.Name}}</li>
+    </ol>
+    <input type="button" value="Save Itinerary" ng-click="saveMyItinerary(myStops, myItinerary)" />
+    <input type="button" value="Map My Route" ng-click="goToCrawlMap()" />
+</div>
+
+<h2>Crawl Map</h2>
+
+<div id="map" style="width: 800px; height:800px"></div>
+
+<div id="directions-panel"></div>
+
+<input type="button" value="Show Route" id="submit" />

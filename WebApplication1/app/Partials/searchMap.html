@@ -1,0 +1,7 @@
+﻿<input id="pac-input" class="controls" type="text" placeholder="Search Box">
+<div id="map" style="width: 500px; height:500px"></div>
+<div ng-repeat="place in places">
+    <p>{{place.name}}</p>
+    <input type="button" value="Save" ng-click="addDestination(place)" />
+</div>
+<input type="button" value="Create Itinerary" ng-click="itineraryPage()" />

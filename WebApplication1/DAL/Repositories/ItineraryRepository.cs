@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using WebApplication1.DAL.Interfaces;
 using WebApplication1.Models;
 
 namespace WebApplication1.DAL.Repositories
 {
-    public class ItineraryRepository
+    public class ItineraryRepository : IItineraryRepository
     {
         private readonly ApplicationDbContext _context;
         public ItineraryRepository(ApplicationDbContext context)
@@ -33,6 +34,11 @@ namespace WebApplication1.DAL.Repositories
         public Itinerary GetSingleItinerary(int id)
         {
             return _context.Itineraries.Find(id);
+        }
+      
+        public void UpdateItinerary(Itinerary newItinerary)
+        {
+            throw new NotImplementedException();
         }
     }
 }

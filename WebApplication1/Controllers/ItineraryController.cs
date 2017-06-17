@@ -29,7 +29,7 @@ namespace WebApplication1.Controllers
         [HttpGet]
         public IEnumerable<Itinerary> GetItineraries()
         {
-            return _itineraryRepository.GetAllIntineraries().ToList();
+            return _itineraryRepository.GetAllItineraries().ToList();
         }
 
         [Route("api/itinerary/{id}")]

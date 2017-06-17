@@ -2,132 +2,67 @@
     ["$scope", "$rootScope", "$http", "$location", "GoogleMapsFactory",
     function ($scope, $rootScope, $http, $location, GoogleMapsFactory) {
         
-
-        function initAutocomplete() {
-            $scope.map = new google.maps.Map(document.getElementById('map'), {
-                center: { lat: 36.1627, lng: -86.7816 },
-                zoom: 13,
-                mapTypeId: 'roadmap'
+        console.log($rootScope.myStops);
+        function initMap() {
+            var directionsService = new google.maps.DirectionsService;
+            var directionsDisplay = new google.maps.DirectionsRenderer;
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 6,
+                center: { lat: 36.1627, lng: -86.7816 }
             });
+            directionsDisplay.setMap(map);
 
-            //geo location
-            var infoWindow = new google.maps.InfoWindow({ map: $scope.map });
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function (position) {
-                    var pos = {
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude
-                    };
+            document.getElementById('submit').addEventListener('click', function () {
+                calculateAndDisplayRoute(directionsService, directionsDisplay, $rootScope.myStops);
+            });
+        }
 
-                    infoWindow.setPosition(pos);
-                    infoWindow.setContent('Location found.');
-                    $scope.map.setCenter(pos);
-                }, function () {
-                    handleLocationError(true, infoWindow, $scope.map.getCenter());
-                });
-            } else {
-                // Browser doesn't support Geolocation
-                handleLocationError(false, infoWindow, $scope.map.getCenter());
+        function calculateAndDisplayRoute(directionsService, directionsDisplay, myStops) {
+            var waypts = [];
+            
+            for (var i = 1; i < myStops.length-1; i++) {
+               
+                    waypts.push({
+                        location: `place_id:${myStops.PlaceId}`,
+                        stopover: true
+                    });
             }
 
+            var end = $rootScope.myStops.length -1;
+            $scope.startPoint = $rootScope.myStops[0].PlaceId;
+            $scope.endPoint = $rootScope.myStops[end].PlaceId;
 
-            console.log("searchBox", searchBox);
-
-            // Create the search box and link it to the UI element.
-            var input = document.getElementById('pac-input');
-            var searchBox = new google.maps.places.SearchBox(input);
-            $scope.map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
-            // Bias the SearchBox results towards current map's viewport.
-            $scope.map.addListener('bounds_changed', function () {
-                searchBox.setBounds($scope.map.getBounds());
-            });
-
-            $scope.markers = [];
-            $scope.places = [];
-
-            // Listen for the event fired when the user selects a prediction and retrieve
-            // more details for that place.
-            searchBox.addListener('places_changed', function () {
-                $scope.places = searchBox.getPlaces();
-                $scope.$apply();
-                console.log("places", $scope.places); //go information to dive into
-                if ($scope.places.length === 0) {
-                    return;
+            directionsService.route({
+                origin: `place_id:${$scope.startPoint}`,
+                destination: `place_id:${$scope.endPoint}`,
+                waypoints: waypts,
+                optimizeWaypoints: true,
+                travelMode: 'DRIVING'
+            }, function (response, status) {
+                if (status === 'OK') {
+                    directionsDisplay.setDirections(response);
+                    var route = response.routes[0];
+                    var summaryPanel = document.getElementById('directions-panel');
+                    summaryPanel.innerHTML = '';
+                    // For each route, display summary information.
+                    for (var i = 0; i < route.legs.length; i++) {
+                        var routeSegment = i + 1;
+                        summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment +
+                            '</b><br>';
+                        summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
+                        summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
+                        summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>';
+                    }
+                } else {
+                    window.alert('Directions request failed due to ' + status);
                 }
-
-                // Clear out the old markers.
-                $scope.markers.forEach(function (marker) {
-                    marker.setMap(null);
-                });
-                //$scope.markers = [];
-
-                // For each place, get the icon, name and location.
-                var bounds = new google.maps.LatLngBounds();
-                $scope.places.forEach(function (place) {
-                    if (!place.geometry) {
-                        console.log("Returned place contains no geometry");
-                        return;
-                    }
-                    var icon = {
-                        url: place.icon,
-                        size: new google.maps.Size(71, 71),
-                        origin: new google.maps.Point(0, 0),
-                        anchor: new google.maps.Point(17, 34),
-                        scaledSize: new google.maps.Size(25, 25)
-                    };
-
-                    // Create a marker for each place.
-                    $scope.markers.push(new google.maps.Marker({
-                        map: $scope.map,
-                        icon: icon,
-                        title: place.name,
-                        position: place.geometry.location
-                    }));
-                    //console.log("markers", $scope.markers);
-
-                    if (place.geometry.viewport) {
-                        // Only geocodes have viewport.
-                        bounds.union(place.geometry.viewport);
-                    } else {
-                        bounds.extend(place.geometry.location);
-                    }
-                });
-                $scope.map.fitBounds(bounds);
-                console.log("map scope", $scope.map);
             });
         }
 
-        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-            infoWindow.setPosition(pos);
-            infoWindow.setContent(browserHasGeolocation ?
-                                  'Error: The Geolocation service failed.' :
-                                  'Error: Your browser doesn\'t support geolocation.');
-        }
-
-        initAutocomplete();
+        initMap();
 
 
-        $scope.addDestination = function (place) {
-            console.log("place", place)
-            $http({
-                url: '/api/destination',
-                method: 'post',
-                data: {
-                    Name: place.name,
-                    Address: place.formatted_address,
-                    PlaceId: place.place_id,
-                    Rating: place.rating,
-                    PriceLevel: place.price_level,
-                    Neighborhood: "General"
-
-                }
-            })
-
-            .then(function (result) {
-               console.log("save result", result)
-            });
-        };
+       
     }
 
 ]);

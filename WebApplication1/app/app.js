@@ -21,11 +21,23 @@ app.config(["$routeProvider", function ($routeProvider) {
         {
             templateUrl: "app/Partials/login.html",
             controller: "LoginController"
-        }).when("/crawlMap",
+        })
+        .when("/searchMap",
+        {
+            templateUrl: "app/Partials/searchMap.html",
+            controller: "SearchMapController"
+        })
+        .when("/crawlMap",
         {
             templateUrl: "app/Partials/crawlMap.html",
             controller: "CrawlMapController"
         })
+        .when("/itinerary",
+        {
+            templateUrl: "app/Partials/itinerary.html",
+            controller: "ItineraryController"
+        })
+
 }])
 
 

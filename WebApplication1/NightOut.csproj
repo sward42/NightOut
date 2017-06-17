@@ -280,6 +280,10 @@
     <Compile Include="Migrations\201706130041428_destinationModels.Designer.cs">
       <DependentUpon>201706130041428_destinationModels.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706171526345_updateItineraryModel.cs" />
+    <Compile Include="Migrations\201706171526345_updateItineraryModel.Designer.cs">
+      <DependentUpon>201706171526345_updateItineraryModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -296,12 +300,16 @@
     <Content Include="app\app.js" />
     <Content Include="app\Controllers\CrawlMapController.js" />
     <Content Include="app\Controllers\HomeController.js" />
+    <Content Include="app\Controllers\ItineraryController.js" />
     <Content Include="app\Controllers\LoginController.js" />
+    <Content Include="app\Controllers\SearchMapController.js" />
     <Content Include="app\Controllers\SignUpController.js" />
     <Content Include="app\Factories\GoogleMapsFactory.js" />
     <Content Include="app\Partials\crawlMap.html" />
     <Content Include="app\Partials\home.html" />
+    <Content Include="app\Partials\itinerary.html" />
     <Content Include="app\Partials\login.html" />
+    <Content Include="app\Partials\searchMap.html" />
     <Content Include="app\Partials\signup.html" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap.css" />
@@ -386,6 +394,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706130041428_destinationModels.resx">
       <DependentUpon>201706130041428_destinationModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706171526345_updateItineraryModel.resx">
+      <DependentUpon>201706171526345_updateItineraryModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

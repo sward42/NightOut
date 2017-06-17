@@ -16,6 +16,8 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace WebApplication1.DependencyResolution {
+    using DAL.Interfaces;
+    using DAL.Repositories;
     using StructureMap.Configuration.DSL;
     using StructureMap.Graph;
     using System.Configuration;
@@ -32,7 +34,10 @@ namespace WebApplication1.DependencyResolution {
                     scan.WithDefaultConventions();
                 });
             For<IDbConnection>().Use(c => new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString));
+
+            For<IItineraryRepository>().Use<ItineraryRepository>();
         }
+
 
         #endregion
     }
