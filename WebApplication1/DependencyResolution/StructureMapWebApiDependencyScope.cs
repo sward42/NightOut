@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="DefaultRegistry.cs" company="Web Advanced">
+// <copyright file="StructureMapWebApiDependencyScope.cs" company="Web Advanced">
 // Copyright 2012 Web Advanced (www.webadvanced.com)
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,30 +15,22 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace WebApplication1.DependencyResolution {
-    using DAL.Interfaces;
-    using DAL.Repositories;
-    using StructureMap.Configuration.DSL;
-    using StructureMap.Graph;
-    using System.Configuration;
-    using System.Data;
-    using System.Data.SqlClient;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Http.Dependencies;
+using Microsoft.Practices.ServiceLocation;
+using StructureMap;
 
-    public class DefaultRegistry : Registry {
-        #region Constructors and Destructors
-
-        public DefaultRegistry() {
-            Scan(
-                scan => {
-                    scan.TheCallingAssembly();
-                    scan.WithDefaultConventions();
-                });
-            For<IDbConnection>().Use(c => new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString));
-
-            For<IItineraryRepository>().Use<ItineraryRepository>();
+namespace WebApplication1.DependencyResolution
+{
+    /// <summary>
+    /// The structure map web api dependency scope.
+    /// </summary>
+    public class StructureMapWebApiDependencyScope : StructureMapDependencyScope, IDependencyScope
+    {
+        public StructureMapWebApiDependencyScope(IContainer container)
+            : base(container) {
         }
-
-
-        #endregion
     }
 }

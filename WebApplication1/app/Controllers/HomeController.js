@@ -13,7 +13,7 @@
         }
 
         $scope.getMap = function () {
-            $location.path("/crawlMap");
+            $location.path("/searchMap");
         }
 
         $scope.searchApi = function () {

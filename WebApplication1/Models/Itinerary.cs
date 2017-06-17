@@ -10,6 +10,8 @@ namespace WebApplication1.Models
     {
         [Key]
         public int Id { get; set; }
+        public string ItineraryName { get; set; }
+        public string ItineraryDate { get; set; }
         public int Stop1 { get; set; }
         public int Stop2 { get; set; }
         public int Stop3 { get; set; }

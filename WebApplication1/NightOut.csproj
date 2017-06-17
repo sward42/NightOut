@@ -225,6 +225,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\StructuremapMvc.cs" />
+    <Compile Include="App_Start\StructuremapWebApi.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
     <Compile Include="Areas\HelpPage\App_Start\HelpPageConfig.cs" />
@@ -256,12 +257,18 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\MapController.cs" />
+    <Compile Include="Controllers\DestinationController.cs" />
+    <Compile Include="Controllers\ItineraryController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="DAL\Interfaces\IDestinationRepository.cs" />
+    <Compile Include="DAL\Interfaces\IItineraryRepository.cs" />
+    <Compile Include="DAL\Repositories\ItineraryRepository.cs" />
     <Compile Include="DependencyResolution\DefaultRegistry.cs" />
     <Compile Include="DependencyResolution\IoC.cs" />
     <Compile Include="DependencyResolution\StructureMapDependencyScope.cs" />
     <Compile Include="DependencyResolution\StructureMapScopeModule.cs" />
+    <Compile Include="DependencyResolution\StructureMapWebApiDependencyResolver.cs" />
+    <Compile Include="DependencyResolution\StructureMapWebApiDependencyScope.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -273,6 +280,10 @@
     <Compile Include="Migrations\201706130041428_destinationModels.Designer.cs">
       <DependentUpon>201706130041428_destinationModels.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706171526345_updateItineraryModel.cs" />
+    <Compile Include="Migrations\201706171526345_updateItineraryModel.Designer.cs">
+      <DependentUpon>201706171526345_updateItineraryModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -281,6 +292,7 @@
     <Compile Include="Models\Itinerary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
+    <Compile Include="DAL\Repositories\DestinationRepository.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -288,12 +300,16 @@
     <Content Include="app\app.js" />
     <Content Include="app\Controllers\CrawlMapController.js" />
     <Content Include="app\Controllers\HomeController.js" />
+    <Content Include="app\Controllers\ItineraryController.js" />
     <Content Include="app\Controllers\LoginController.js" />
+    <Content Include="app\Controllers\SearchMapController.js" />
     <Content Include="app\Controllers\SignUpController.js" />
     <Content Include="app\Factories\GoogleMapsFactory.js" />
     <Content Include="app\Partials\crawlMap.html" />
     <Content Include="app\Partials\home.html" />
+    <Content Include="app\Partials\itinerary.html" />
     <Content Include="app\Partials\login.html" />
+    <Content Include="app\Partials\searchMap.html" />
     <Content Include="app\Partials\signup.html" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap.css" />
@@ -378,6 +394,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706130041428_destinationModels.resx">
       <DependentUpon>201706130041428_destinationModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706171526345_updateItineraryModel.resx">
+      <DependentUpon>201706171526345_updateItineraryModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
