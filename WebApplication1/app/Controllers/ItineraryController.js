@@ -4,8 +4,6 @@
        
         $rootScope.myStops = [];
         $scope.myItinerary = {};
-        $scope.itinName = "";
-        $scope.itinDate = "";
         $scope.myRoute = false;
 
         $scope.getMyPlaces = function () {

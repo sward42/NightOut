@@ -10,18 +10,18 @@
     <input type="button" value="Delete" ng-click="deletePlace(place.Id)" />
 </div>
 <div>
-    Name your Itinerary: <input type="text"  ng-model="itinName" />
-    Select a Date: <input type="date" name="ItineraryDate" ng-model="itinDate" />
-    <h3>{{itinName}}</h3>
-    <h3 ng-show="!itinName">My Itinerary</h3>
-    <h4>{{itinDate}}</h4>
-    <h4 ng-show="!itinDate">Date of Night Out</h4>
+    Name your Itinerary: <input type="text"  ng-model="myItinerary.Name" />
+    Select a Date: <input type="date" name="ItineraryDate" ng-model="myItinerary.Date" />
+    <h3>{{myItinerary.Name}}</h3>
+    <h3 ng-show="!myItinerary.Name">My Itinerary</h3>
+    <h4>{{myItinerary.Date}}</h4>
+    <h4 ng-show="!myItinerary.Date">Date of Night Out</h4>
     <ol >
         <li ng-repeat="stop in myStops">{{stop.Name}} <button ng-click="removeStop(stop.Id)">Remove</button></li>
         <p ng-show="!myStops.length">Add a Minimum of 3 Stops and a Maximum of 10 Stops</p>
     </ol>
     <input type="button" value="Save Itinerary" ng-click="saveMyItinerary(myStops, myItinerary)" />
-    <input type="button" value="Map My Route" ng-click="goToCrawlMap()" />
+    <!--<input type="button" value="Map My Route" ng-click="goToCrawlMap()" />-->
 </div>
 
 <input type="button" value="Map My Route" id="submit" ng-click="showMap()"/>
