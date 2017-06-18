@@ -1,8 +1,8 @@
 ﻿app.controller("LoginController", ["$scope", "$http", "$location",
     function ($scope, $http, $location) {
 
-        $scope.username = "";
-        $scope.password = "";
+        $scope.username = "seb@nss.com";
+        $scope.password = "Seb123!";
 
         console.log("first login controller check")
         $scope.login = function () {

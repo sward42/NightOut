@@ -2,6 +2,7 @@
     ["$scope", "$rootScope", "$http", "$location", "GoogleMapsFactory",
     function ($scope, $rootScope, $http, $location, GoogleMapsFactory) {
 
+        $scope.neighborhoodSelect = "General";
 
         function initAutocomplete() {
             $scope.map = new google.maps.Map(document.getElementById('map'), {
@@ -108,9 +109,11 @@
 
         initAutocomplete();
 
-        console.log($scope.neighborhoodSelect);
 
         $scope.addDestination = function (place) {
+
+            console.log("neighborhoodSelect", $scope.neighborhoodSelect);
+
             console.log("place", place)
             $http({
                 url: '/api/destination',

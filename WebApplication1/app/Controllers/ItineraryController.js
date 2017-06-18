@@ -4,6 +4,9 @@
        
         $rootScope.myStops = [];
         $scope.myItinerary = {};
+        $scope.itinName = "";
+        $scope.itinDate = "";
+        $scope.myRoute = false;
 
         $scope.getMyPlaces = function () {
             $http({
@@ -27,6 +30,15 @@
             $scope.addStop = function (destination) {
                 $rootScope.myStops.push(destination);
                 console.log("myStops", $rootScope.myStops);
+            }
+
+            $scope.removeStop = function (stopId) {
+                for (var i = 0; i < $rootScope.myStops.length ; i++) {
+                    if ($rootScope.myStops[i].Id == stopId) {
+                        $rootScope.myStops.splice(i, 1);
+                        return false;
+                    } 
+                }
             }
 
 
@@ -67,6 +79,10 @@
                 $location.path("/crawlMap");
             }
 
+            $scope.showMap = function () {
+                $scope.myRoute = true;
+            }
+
 ////////////////
 
             console.log("myStops2",$rootScope.myStops);
@@ -87,13 +103,14 @@
             $scope.waypts = [];
 
             function calculateAndDisplayRoute(directionsService, directionsDisplay, myStops) {
-                
+
                 for (var i = 1; i < myStops.length - 1; i++) {
 
                     $scope.waypts.push({
                         location: `place_id:${myStops[i].PlaceId}`,
                         stopover: true
                     });
+                    
                 }
 
                 var end = $rootScope.myStops.length - 1;

@@ -37,6 +37,11 @@ app.config(["$routeProvider", function ($routeProvider) {
             templateUrl: "app/Partials/itinerary.html",
             controller: "ItineraryController"
         })
+        .when("/itineraryList",
+        {
+            templateUrl: "app/Partials/itineraryList.html",
+            controller: "ItineraryListController"
+        })
 
 }])
 

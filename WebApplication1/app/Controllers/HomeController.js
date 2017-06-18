@@ -1,8 +1,6 @@
-﻿app.controller("HomeController", ["$scope", "$http", "$location",
-    function ($scope, $http, $location) {
+﻿app.controller("HomeController", ["$scope", "$rootScope", "$http", "$location",
+    function ($scope, $rootScope, $http, $location) {
         
-        //var page = 0;
-        //$scope.barData = [];
 
         $scope.logout = function () {
 
@@ -16,6 +14,8 @@
             $location.path("/searchMap");
         }
 
+        //var page = 0;
+        //$scope.barData = [];
         //$scope.searchApi = function () {
         //    $.ajax({
         //        url: "https://data.nashville.gov/resource/p4jz-kk7d.json?permit_type=ON-SALE BEER",
