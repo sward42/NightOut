@@ -259,10 +259,13 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\DestinationController.cs" />
     <Compile Include="Controllers\ItineraryController.cs" />
+    <Compile Include="Controllers\StopController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="DAL\Interfaces\IDestinationRepository.cs" />
     <Compile Include="DAL\Interfaces\IItineraryRepository.cs" />
+    <Compile Include="DAL\Interfaces\IStopRepository.cs" />
     <Compile Include="DAL\Repositories\ItineraryRepository.cs" />
+    <Compile Include="DAL\Repositories\StopRepository.cs" />
     <Compile Include="DependencyResolution\DefaultRegistry.cs" />
     <Compile Include="DependencyResolution\IoC.cs" />
     <Compile Include="DependencyResolution\StructureMapDependencyScope.cs" />
@@ -284,12 +287,21 @@
     <Compile Include="Migrations\201706171526345_updateItineraryModel.Designer.cs">
       <DependentUpon>201706171526345_updateItineraryModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706200216442_itineraryStopUpdate.cs" />
+    <Compile Include="Migrations\201706200216442_itineraryStopUpdate.Designer.cs">
+      <DependentUpon>201706200216442_itineraryStopUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706200605060_modelUpdate.cs" />
+    <Compile Include="Migrations\201706200605060_modelUpdate.Designer.cs">
+      <DependentUpon>201706200605060_modelUpdate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Destination.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Itinerary.cs" />
+    <Compile Include="Models\Stop.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="DAL\Repositories\DestinationRepository.cs" />
@@ -299,15 +311,49 @@
   <ItemGroup>
     <Content Include="app\app.js" />
     <Content Include="app\Controllers\CrawlMapController.js" />
+    <Content Include="app\Controllers\DestinationListController.js" />
     <Content Include="app\Controllers\HomeController.js" />
     <Content Include="app\Controllers\ItineraryController.js" />
+    <Content Include="app\Controllers\ItineraryDetailController.js" />
+    <Content Include="app\Controllers\ItineraryListController.js" />
     <Content Include="app\Controllers\LoginController.js" />
     <Content Include="app\Controllers\SearchMapController.js" />
     <Content Include="app\Controllers\SignUpController.js" />
     <Content Include="app\Factories\GoogleMapsFactory.js" />
+    <Content Include="app\MapPartials\12South.html" />
+    <Content Include="app\MapPartials\8thAveS.html" />
+    <Content Include="app\MapPartials\BerryHill.html" />
+    <Content Include="app\MapPartials\CharlotteAve.html" />
+    <Content Include="app\MapPartials\Downtown.html" />
+    <Content Include="app\MapPartials\EastNashville.html" />
+    <Content Include="app\MapPartials\Germantown.html" />
+    <Content Include="app\MapPartials\GreenHills.html" />
+    <Content Include="app\MapPartials\Gulch.html" />
+    <Content Include="app\MapPartials\Hillsboro.html" />
+    <Content Include="app\MapPartials\Midtown.html" />
+    <Content Include="app\MapPartials\Nations.html" />
+    <Content Include="app\MapPartials\SoBro.html" />
+    <Content Include="app\MapPartials\WestEnd.html" />
+    <Content Include="app\NeighborhoodMapCtrls\12SouthController.js" />
+    <Content Include="app\NeighborhoodMapCtrls\8thAveSController.js" />
+    <Content Include="app\NeighborhoodMapCtrls\BerryHillController.js" />
+    <Content Include="app\NeighborhoodMapCtrls\CharlotteAveController.js" />
+    <Content Include="app\NeighborhoodMapCtrls\DowntownController.js" />
+    <Content Include="app\NeighborhoodMapCtrls\EastNashvilleController.js" />
+    <Content Include="app\NeighborhoodMapCtrls\GermantownController.js" />
+    <Content Include="app\NeighborhoodMapCtrls\GreenHillsController.js" />
+    <Content Include="app\NeighborhoodMapCtrls\GulchController.js" />
+    <Content Include="app\NeighborhoodMapCtrls\HillsboroController.js" />
+    <Content Include="app\NeighborhoodMapCtrls\MidtownController.js" />
+    <Content Include="app\NeighborhoodMapCtrls\NationsController.js" />
+    <Content Include="app\NeighborhoodMapCtrls\SoBroController.js" />
+    <Content Include="app\NeighborhoodMapCtrls\WestEndController.js" />
     <Content Include="app\Partials\crawlMap.html" />
+    <Content Include="app\Partials\destinationList.html" />
     <Content Include="app\Partials\home.html" />
     <Content Include="app\Partials\itinerary.html" />
+    <Content Include="app\Partials\itineraryDetail.html" />
+    <Content Include="app\Partials\itineraryList.html" />
     <Content Include="app\Partials\login.html" />
     <Content Include="app\Partials\searchMap.html" />
     <Content Include="app\Partials\signup.html" />
@@ -397,6 +443,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706171526345_updateItineraryModel.resx">
       <DependentUpon>201706171526345_updateItineraryModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706200216442_itineraryStopUpdate.resx">
+      <DependentUpon>201706200216442_itineraryStopUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706200605060_modelUpdate.resx">
+      <DependentUpon>201706200605060_modelUpdate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

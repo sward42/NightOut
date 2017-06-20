@@ -1,14 +1,14 @@
-﻿app.controller("SearchMapController",
+﻿app.controller("12SouthController",
     ["$scope", "$rootScope", "$http", "$location", "GoogleMapsFactory",
     function ($scope, $rootScope, $http, $location, GoogleMapsFactory) {
 
-        $scope.neighborhoodSelect = "General";
+        $scope.neighborhoodSelect = "12 South";
         $('#pac-input').focus();
 
         function initAutocomplete() {
             $scope.map = new google.maps.Map(document.getElementById('map'), {
-                center: { lat: 36.1627, lng: -86.7816 },
-                zoom: 14,
+                center: { lat: 36.1252, lng: -86.7894 },
+                zoom: 16,
                 mapTypeId: 'roadmap'
             });
 
@@ -37,6 +37,13 @@
             var input = document.getElementById('pac-input');
             var searchBox = new google.maps.places.SearchBox(input);
             $scope.map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+            //Strict Bounds
+            var strictBounds = new google.maps.LatLngBounds(
+                    new google.maps.LatLng(60.88770, -0.83496),
+                    new google.maps.LatLng(49.90878, -7.69042)
+            );
+
 
             // Bias the SearchBox results towards current map's viewport.
             $scope.map.addListener('bounds_changed', function () {

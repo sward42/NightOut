@@ -1,30 +1,49 @@
-﻿<h3>My Places</h3>
-<div ng-repeat="place in response">
-    
-    <p>{{place.Name}}</p>
-    <p>{{place.Address}}</p>
-    <p>{{place.Neighborhood}}</p>
-    <p>Rating: {{place.Rating}}</p>
-    <p>Price Level: {{place.PriceLevel}}</p>
-    <input type="button" value="Add to Itinerary" ng-click="addStop(place)" />
-    <input type="button" value="Delete" ng-click="deletePlace(place.Id)" />
-</div>
-<div>
-    Name your Itinerary: <input type="text"  ng-model="myItinerary.Name" />
-    Select a Date: <input type="date" name="ItineraryDate" ng-model="myItinerary.Date" />
-    <h3>{{myItinerary.Name}}</h3>
-    <h3 ng-show="!myItinerary.Name">My Itinerary</h3>
-    <h4>{{myItinerary.Date}}</h4>
-    <h4 ng-show="!myItinerary.Date">Date of Night Out</h4>
-    <ol >
-        <li ng-repeat="stop in myStops">{{stop.Name}} <button ng-click="removeStop(stop.Id)">Remove</button></li>
-        <p ng-show="!myStops.length">Add a Minimum of 3 Stops and a Maximum of 10 Stops</p>
+﻿<div ng-show="selectPlaces">
+    <h3>{{myItinerary.ItineraryName}}</h3>
+    <h3 ng-show="!myItinerary.ItineraryName">My Itinerary</h3>
+    <h4>{{myItinerary.ItineraryDate | date: "MM/dd/yyyy"}}</h4>
+    <h4 ng-show="!myItinerary.ItineraryDate">Date of Night Out</h4>
+    <ol>
+        <li ng-repeat="stop in myStops">{{stop.Name}} <button ng-click="removeStop(stop)">Remove</button></li>
+        <li ng-show="!myStops.length">Add a Minimum of 3 Stops</li>
     </ol>
     <input type="button" value="Save Itinerary" ng-click="saveMyItinerary(myStops, myItinerary)" />
     <!--<input type="button" value="Map My Route" ng-click="goToCrawlMap()" />-->
+    <input type="button" value="Map My Route" id="submit" ng-click="showMap()" />
+
 </div>
 
-<input type="button" value="Map My Route" id="submit" ng-click="showMap()"/>
+<div ng-show="selectPlaces">
+    <h3>My Places</h3>
+
+    <div>
+        <input type="text" placeholder="Search you Destinations" ng-model="searchText" id="search" />
+        <button ng-click="clear()">Clear Search</button>
+    </div>
+
+    <div ng-repeat="place in response | filter: searchText">
+    
+        <p>{{place.Name}}</p>
+        <p>{{place.Address}}</p>
+        <p>Neighborhood: {{place.Neighborhood}}</p>
+        <p ng-hide="place.Rating == 0">Rating: {{place.Rating}}</p>
+        <p ng-show="place.Rating == 0">Rating: None</p>
+        <p ng-hide="place.PriceLevel == 0">Price Level: {{place.PriceLevel}}</p>
+        <p ng-show="place.PriceLevel == 0">Price Level: Unavailable</p>
+        <input type="button" value="Add to Itinerary" ng-click="addStop(place)" />
+    </div>
+</div>
+
+<div ng-show="!selectPlaces">
+    <h2>Create a New Itinerary</h2>
+    Name your Itinerary: <input type="text"  ng-model="myItinerary.ItineraryName" />
+    Select a Date: <input type="date" name="ItineraryDate" ng-model="myItinerary.ItineraryDate" />
+    <input type="button" value="Add Stops" ng-click="saveMyItinerary(myItinerary); addPlaces()" />
+
+</div>
+
+
+
 
 
 

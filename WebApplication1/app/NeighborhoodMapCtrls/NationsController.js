@@ -1,8 +1,8 @@
-﻿app.controller("SearchMapController",
+﻿app.controller("NationsController",
     ["$scope", "$rootScope", "$http", "$location", "GoogleMapsFactory",
     function ($scope, $rootScope, $http, $location, GoogleMapsFactory) {
 
-        $scope.neighborhoodSelect = "General";
+        $scope.neighborhoodSelect = "The Nations";
         $('#pac-input').focus();
 
         function initAutocomplete() {

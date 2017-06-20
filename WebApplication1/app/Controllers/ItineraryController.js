@@ -3,8 +3,12 @@
     function ($scope, $rootScope, $http, $location, GoogleMapsFactory) {
        
         $rootScope.myStops = [];
+        $scope.response = [];
         $scope.myItinerary = {};
+
+        $scope.searchText = "";
         $scope.myRoute = false;
+        $scope.selectPlaces = false;
 
         $scope.getMyPlaces = function () {
             $http({
@@ -22,59 +26,101 @@
             });
         }
 
-        $scope.getMyPlaces();
 
-
-            $scope.addStop = function (destination) {
-                $rootScope.myStops.push(destination);
-                console.log("myStops", $rootScope.myStops);
-            }
-
-            $scope.removeStop = function (stopId) {
-                for (var i = 0; i < $rootScope.myStops.length ; i++) {
-                    if ($rootScope.myStops[i].Id == stopId) {
-                        $rootScope.myStops.splice(i, 1);
-                        return false;
-                    } 
-                }
-            }
-
-
-            $scope.deletePlace = function (id) {
-                $http({
-                    url: `/api/destination/${id}`,
-                    method: 'delete',
-                })
-                .then(function successCallback(response) {
-                    console.log("item deleted")
-                    ;
-                    $scope.getMyPlaces();
-                },
-                function errorCallback(response) {
-                    console.log("error", response);
-                });
-            }
-
-
-            $scope.saveMyItinerary = function (myStops, myItinerary) {
-                for (var i = 1; i <= myStops.length; i++) {
-                    myItinerary['Stop'+i] = myStops[i-1].Id;
+        $scope.saveNewStop = function (place) {
+            $http({
+                url: '/api/stop',
+                method: 'post',
+                data: {
+                    Name: place.name,
+                    Address: place.formatted_address,
+                    PlaceId: place.place_id,
+                    Rating: place.rating,
+                    PriceLevel: place.price_level,
+                    Neighborhood: place.neighborhoodSelect,
+                    ItineraryId: $scope.myItinerary.Id
 
                 }
-                console.log("my itinerary", $scope.myItinerary);
+            })
+            .then(function successCallback(response) {
+                console.log("stop added", response);
+            },
+            function errorCallback(response) {
+                console.log("error", response);
+            });
 
-                $http.post('api/itinerary', myItinerary)
-                .then(function successCallback(response) {
-                    console.log("item added");
-                },
-                function errorCallback(response) {
-                    console.log("error", response);
-                });
+        }
+
+
+        $scope.deleteStop = function (id) {
+            $http.delete(`api/stop/${id}`)
+            .then(function successCallback(response) {
+                console.log("stop deleted");
+            },
+            function errorCallback(response) {
+                console.log("error", response);
+            });
+        }
+
+
+        $scope.addStop = function (destination) {
+
+            $scope.saveNewStop(destination);
+
+            $rootScope.myStops.push(destination);
+
+            for (var i = 0; i < $scope.response.length ; i++) {
+                if ($scope.response[i].Id == destination.Id) {
+                    $scope.response.splice(i, 1);
+                    return false;
+                }
             }
+        }
 
+        $scope.removeStop = function (stop) {
+            $scope.deleteStop(stop.Id);
+
+            for (var i = 0; i < $rootScope.myStops.length ; i++) {
+                if ($rootScope.myStops[i].Id == stop.Id) {
+                    $rootScope.myStops.splice(i, 1);
+                    $scope.response.push(stop);
+                    return false;
+                } 
+            }
+            console.log($scope.response);
+        }
+
+            $scope.saveMyItinerary = function (myItinerary) {
+
+                if (!myItinerary.ItineraryName || !myItinerary.ItineraryDate) {
+                    alert("Please enter a name and date for your itinerary.")
+                } else {
+                    console.log("my itinerary", $scope.myItinerary);
+
+                    $http.post('api/itinerary', myItinerary)
+                    .then(function successCallback(response) {
+                        console.log("item added", response);
+                        $scope.myItinerary.Id = response.data;
+                    },
+                    function errorCallback(response) {
+                        console.log("error", response);
+                    });
+                }
+           }
+            
+
+            $scope.clear = function () {
+                document.getElementById('search').value = "";
+                $scope.searchText = "";
+            }
 
             $scope.goToCrawlMap = function () {
                 $location.path("/crawlMap");
+            }
+
+            $scope.addPlaces = function () {
+                $scope.selectPlaces = true;
+                $scope.getMyPlaces();
             }
 
             $scope.showMap = function () {
@@ -152,3 +198,13 @@
     ]);
 
 
+//if (myStops.length > 10 || myStops.lenth < 3) {
+//    alert("Your itinerary must have at least 3 but no more than 10 stops.");
+//} else if (!myItinerary.ItineraryName || !myItinerary.ItineraryDate ) {
+//    alert("Please enter a name and date for your itinerary.");
+//} else {
+
+//    for (var i = 1; i <= myStops.length; i++) {
+//        myItinerary['Stop' + i] = myStops[i - 1].Id;
+
+//    }

@@ -18,6 +18,7 @@
 namespace WebApplication1.DependencyResolution {
     using DAL.Interfaces;
     using DAL.Repositories;
+    using Repositories;
     using StructureMap.Configuration.DSL;
     using StructureMap.Graph;
     using System.Configuration;
@@ -36,6 +37,8 @@ namespace WebApplication1.DependencyResolution {
             For<IDbConnection>().Use(c => new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString));
 
             For<IItineraryRepository>().Use<ItineraryRepository>();
+            For<IDestinationRepository>().Use<DestinationRepository>();
+            For<IStopRepository>().Use<StopRepository>();
         }
 
 

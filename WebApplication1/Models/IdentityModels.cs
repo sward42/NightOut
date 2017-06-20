@@ -29,6 +29,7 @@ namespace WebApplication1.Models
         //public DbSet<Bar> Bars { get; set; }
         public DbSet<Destination> Destinations { get; set; }
         public DbSet<Itinerary> Itineraries { get; set; }
+        public DbSet<Stop> Stops { get; set; }
         
         public static ApplicationDbContext Create()
         {

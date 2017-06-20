@@ -9,7 +9,7 @@ namespace WebApplication1.DAL.Interfaces
 {
     public interface IItineraryRepository
     {
-        void SaveItinerary(Itinerary itinerary);
+        int SaveItinerary(Itinerary itinerary);
         IEnumerable<Itinerary> GetAllItineraries();
         void DeleteItinerary(int itineraryId);
         void UpdateItinerary(Itinerary newItinerary);

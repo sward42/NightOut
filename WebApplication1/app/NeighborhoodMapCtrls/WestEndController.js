@@ -1,8 +1,8 @@
-﻿app.controller("SearchMapController",
+﻿app.controller("WestEndController",
     ["$scope", "$rootScope", "$http", "$location", "GoogleMapsFactory",
     function ($scope, $rootScope, $http, $location, GoogleMapsFactory) {
 
-        $scope.neighborhoodSelect = "General";
+        $scope.neighborhoodSelect = "West End";
         $('#pac-input').focus();
 
         function initAutocomplete() {

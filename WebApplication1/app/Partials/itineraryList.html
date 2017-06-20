@@ -1,1 +1,16 @@
-﻿<h2>My Itineraries</h2>
+﻿<div ng-show="!itineraryDetail">
+    <h2>My Itineraries</h2>
+    <div>
+        <input type="text" placeholder="Search you Itineraries" ng-model="searchText" id="search" />
+        <button ng-click="clear()">Clear Search</button>
+    </div>
+
+    <div ng-repeat="place in myItineraries | filter: searchText ">
+
+        <p>{{place.ItineraryName}}</p>
+        <p>{{place.ItineraryDate}}</p>
+
+        <input type="button" value="Delete" ng-click="deleteItinerary(place.Id)" />
+        <a href="#!/itineraryDetail/{{place.Id}}"><input type="button" value="Details" ng-click="showDetails(place.Id)" /></a>
+    </div>
+</div>

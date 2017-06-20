@@ -1,0 +1,15 @@
+﻿<h2>My Saved Destinations</h2>
+<div>
+    <input type="text" placeholder="Search you Destinations" ng-model="searchText" id="search" />
+    <button ng-click="clear()">Clear Search</button>
+</div>
+
+<div ng-repeat="place in response | filter: searchText ">
+
+    <p>{{place.Name}}</p>
+    <p>{{place.Address}}</p>
+    <p>{{place.Neighborhood}}</p>
+    <p>Rating: {{place.Rating}}</p>
+    <p>Price Level: {{place.PriceLevel}}</p>
+    <input type="button" value="Delete" ng-click="deletePlace(place.Id)" />
+</div>
