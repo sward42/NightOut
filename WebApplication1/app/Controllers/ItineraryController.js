@@ -32,18 +32,18 @@
                 url: '/api/stop',
                 method: 'post',
                 data: {
-                    Name: place.name,
-                    Address: place.formatted_address,
-                    PlaceId: place.place_id,
-                    Rating: place.rating,
-                    PriceLevel: place.price_level,
-                    Neighborhood: place.neighborhoodSelect,
+                    Name: place.Name,
+                    Address: place.Address,
+                    PlaceId: place.PlaceId,
+                    Rating: place.Rating,
+                    PriceLevel: place.PriceLevel,
+                    Neighborhood: place.Neighborhood,
                     ItineraryId: $scope.myItinerary.Id
 
                 }
             })
             .then(function successCallback(response) {
-                console.log("stop added", response);
+                console.log("stop added");
             },
             function errorCallback(response) {
                 console.log("error", response);
@@ -63,14 +63,13 @@
         }
 
 
-        $scope.addStop = function (destination) {
+        $scope.addStop = function (place) {
+            $scope.saveNewStop(place);
 
-            $scope.saveNewStop(destination);
-
-            $rootScope.myStops.push(destination);
+            $rootScope.myStops.push(place);
 
             for (var i = 0; i < $scope.response.length ; i++) {
-                if ($scope.response[i].Id == destination.Id) {
+                if ($scope.response[i].Id == place.Id) {
                     $scope.response.splice(i, 1);
                     return false;
                 }

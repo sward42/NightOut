@@ -21,9 +21,11 @@ namespace WebApplication1.DAL.Repositories
             _context.SaveChanges();
         }
 
-        public IEnumerable<Stop> GetAllStops()
+        public IEnumerable<Stop> GetAllStops(int itineraryId)
         {
-            return _context.Stops;
+            var allStops = _context.Stops;
+
+            return allStops.Where(stop => stop.ItineraryId == itineraryId);
         }
 
         public Stop GetSingleStop(int stopId)

@@ -10,7 +10,7 @@ namespace WebApplication1.DAL.Interfaces
     public interface IStopRepository
     {
         void SaveStop(Stop stop);
-        IEnumerable<Stop> GetAllStops();
+        IEnumerable<Stop> GetAllStops(int itineraryId);
         void DeleteStop(int stopId);
         Stop GetSingleStop(int stopId);
     }

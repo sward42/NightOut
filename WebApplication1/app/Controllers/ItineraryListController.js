@@ -2,7 +2,6 @@
     function ($scope, $rootScope, $http, $location) {
 
         $scope.myItineraries = [];
-        $scope.myStops = [];
 
         $scope.itineraryDetail = false;
 
@@ -38,22 +37,5 @@
             });
         }
 
-        $scope.getMyStops = function () {
-            $http({
-                url: '/api/stop',
-                method: 'get',
-            })
-            .then(function successCallback(response) {
-                console.log("save result", response)
-                $scope.myStops = response.data;
-                console.log("response", $scope.myStops);
-
-            },
-            function errorCallback(response) {
-                console.log("error", response);
-            });
-        }
-
-        $scope.getMyStops();
     }
 ]);

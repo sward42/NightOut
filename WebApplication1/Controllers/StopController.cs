@@ -25,11 +25,11 @@ namespace WebApplication1.Controllers
 
         }
 
-        [Route("api/stop")]
+        [Route("api/stop/all/{itineraryId}")]
         [HttpGet]
-        public IEnumerable<Stop> GetStops()
+        public IEnumerable<Stop> GetStops(int itineraryId)
         {
-            return _stopRepository.GetAllStops().ToList();
+            return _stopRepository.GetAllStops(itineraryId).ToList();
         }
 
         [Route("api/stop/{id}")]

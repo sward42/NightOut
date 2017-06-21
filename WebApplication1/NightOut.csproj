@@ -317,8 +317,10 @@
     <Content Include="app\Controllers\ItineraryDetailController.js" />
     <Content Include="app\Controllers\ItineraryListController.js" />
     <Content Include="app\Controllers\LoginController.js" />
+    <Content Include="app\Controllers\NavBarController.js" />
     <Content Include="app\Controllers\SearchMapController.js" />
     <Content Include="app\Controllers\SignUpController.js" />
+    <Content Include="app\CSS\MyStyles.css" />
     <Content Include="app\Factories\GoogleMapsFactory.js" />
     <Content Include="app\MapPartials\12South.html" />
     <Content Include="app\MapPartials\8thAveS.html" />
@@ -334,6 +336,7 @@
     <Content Include="app\MapPartials\Nations.html" />
     <Content Include="app\MapPartials\SoBro.html" />
     <Content Include="app\MapPartials\WestEnd.html" />
+    <Content Include="app\NashvilleSkyline.jpg" />
     <Content Include="app\NeighborhoodMapCtrls\12SouthController.js" />
     <Content Include="app\NeighborhoodMapCtrls\8thAveSController.js" />
     <Content Include="app\NeighborhoodMapCtrls\BerryHillController.js" />
@@ -355,6 +358,7 @@
     <Content Include="app\Partials\itineraryDetail.html" />
     <Content Include="app\Partials\itineraryList.html" />
     <Content Include="app\Partials\login.html" />
+    <Content Include="app\Partials\navBar.html" />
     <Content Include="app\Partials\searchMap.html" />
     <Content Include="app\Partials\signup.html" />
     <Content Include="Areas\HelpPage\HelpPage.css" />

@@ -15,9 +15,8 @@
          });
     
 
-        $scope.getMyStops = function () {
             $http({
-                url: '/api/stop',
+                url: `/api/stop/all/${itineraryId}`,
                 method: 'get',
             })
             .then(function successCallback(response) {
@@ -30,7 +29,4 @@
                 console.log("error", response);
             });
         }
-
-        $scope.getMyStops();
-    }
 ]);

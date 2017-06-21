@@ -8,6 +8,7 @@
     @Scripts.Render("~/bundles/modernizr")
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnGGUqrTuOUveVhVEY4Q3dgshQ3t2hWUA&libraries=places"
             async defer></script>
+    <link href="https://fonts.googleapis.com/css?family=Bigshot+One|Bungee+Outline|Bungee+Shade|Chonburi|Ewert|Federant|Federo|Glegoo|Maiden+Orange|Sancreek|Trochut:700" rel="stylesheet">
     
 </head>
 <body ng-app="NightOut">
@@ -19,14 +20,18 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <h4>Nights Out Nashville</h4>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
-                    <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
+                    <li><a href="#!/home">Home</a></li>
+                    <li><a href="#!/searchMap">Search</a></li>
+                    <li><a href="#!/itineraryList">Itineraries</a></li>
+                    <li><a href="#!/destinationList">Destinations</a></li>
+                    <li><a href="#!/itinerary">New Itinerary</a></li>
                 </ul>
             </div>
+
         </div>
     </div>
     <div class="container body-content">

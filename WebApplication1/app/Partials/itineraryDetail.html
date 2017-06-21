@@ -2,5 +2,5 @@
 <h2>{{selectedItinerary.ItineraryName}}</h2>
 <h3>{{selectedItinerary.ItineraryDate | date: "MM/dd/yyyy"}}</h3>
 <ul>
-    <li ng-repeat="stop in myStops">{{stop.Name | filter: {stop.ItineraryId:itineraryId} }}</li>
+    <li ng-repeat="stop in myStops">{{stop.Name}}</li>
 </ul>
