@@ -1,6 +1,22 @@
-﻿
-<h2>{{selectedItinerary.ItineraryName}}</h2>
-<h3>{{selectedItinerary.ItineraryDate | date: "MM/dd/yyyy"}}</h3>
-<ul>
-    <li ng-repeat="stop in myStops">{{stop.Name}}</li>
-</ul>
+﻿<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3 text-center detailDiv">
+            <div class="detailTitle">
+                <h1>{{selectedItinerary.ItineraryName}}</h1>
+                <h2>{{selectedItinerary.ItineraryDate | date: "MM/dd/yyyy"}}</h2>
+            </div>
+            <div class="detailPlace" ng-repeat="stop in myStops">
+                <h3>{{stop.Name}}</h3>
+                <h4>{{stop.Address}}</h4>
+                <h4 ng-hide="stop.Rating == 0 || stop.Rating == null">Rating: {{stop.Rating}}</h4>
+                <h4 ng-show="stop.Rating == 0 || stop.Rating == null">Rating: None</h4>
+                <h4 ng-hide="stop.PriceLevel == 0 || stop.PriceLevel == null">Price Level: {{stop.PriceLevel}}</h4>
+                <h4 ng-show="stop.PriceLevel == 0 || stop.PriceLevel == null">Price Level: Unavailable</h4>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="text-center">
+    <h3><a href="#!/itineraryList">Back</a></h3>
+</div>
