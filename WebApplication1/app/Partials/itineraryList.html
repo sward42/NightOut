@@ -1,0 +1,26 @@
+﻿<div ng-show="!itineraryDetail">
+    <div class="container"  id="itSearchbar">
+        <div class="row">
+            <div class="col-md-3">
+                <h2>My Itineraries</h2>
+            </div>
+            <div class="col-md-5 col-md-offset-4">
+                <input type="text" placeholder="Search you Itineraries" ng-model="searchText" id="search" />
+                <button class="btn btn-default" ng-click="clear()">Clear Search</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-md-offset-1 itDiv" ng-repeat="place in myItineraries | filter: searchText ">
+
+                <h3>{{place.ItineraryName}}</h3>
+                <h4>{{place.ItineraryDate | date: "MM/dd/yyyy"}}</h4>
+
+                <input type="button" class="btn btn-danger" value="Delete" ng-click="deleteItinerary(place.Id)" />
+                <a href="#!/itineraryDetail/{{place.Id}}"><input type="button" class="btn btn-info" value="Details" ng-click="showDetails(place.Id)" /></a>
+            </div>
+        </div>
+    </div>
+</div>

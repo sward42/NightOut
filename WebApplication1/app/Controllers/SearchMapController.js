@@ -2,11 +2,13 @@
     ["$scope", "$rootScope", "$http", "$location", "GoogleMapsFactory",
     function ($scope, $rootScope, $http, $location, GoogleMapsFactory) {
 
+        $scope.neighborhoodSelect = "General";
+        $('#pac-input').focus();
 
         function initAutocomplete() {
             $scope.map = new google.maps.Map(document.getElementById('map'), {
                 center: { lat: 36.1627, lng: -86.7816 },
-                zoom: 13,
+                zoom: 14,
                 mapTypeId: 'roadmap'
             });
 
@@ -23,15 +25,13 @@
                     infoWindow.setContent('Location found.');
                     $scope.map.setCenter(pos);
                 }, function () {
-                    handleLocationError(true, infoWindow, $scope.map.getCenter());
+                    //handleLocationError(true, infoWindow, $scope.map.getCenter());
                 });
             } else {
                 // Browser doesn't support Geolocation
-                handleLocationError(false, infoWindow, $scope.map.getCenter());
+                //handleLocationError(false, infoWindow, $scope.map.getCenter());
             }
 
-
-            console.log("searchBox", searchBox);
 
             // Create the search box and link it to the UI element.
             var input = document.getElementById('pac-input');
@@ -110,6 +110,9 @@
 
 
         $scope.addDestination = function (place) {
+
+            console.log("neighborhoodSelect", $scope.neighborhoodSelect);
+
             console.log("place", place)
             $http({
                 url: '/api/destination',
@@ -120,7 +123,7 @@
                     PlaceId: place.place_id,
                     Rating: place.rating,
                     PriceLevel: place.price_level,
-                    Neighborhood: "General"
+                    Neighborhood: $scope.neighborhoodSelect
 
                 }
             })

@@ -2,7 +2,7 @@
     ["$scope", "$rootScope", "$http", "$location", "GoogleMapsFactory",
     function ($scope, $rootScope, $http, $location, GoogleMapsFactory) {
         
-        console.log($rootScope.myStops);
+        console.log("myStops2", $rootScope.myStops);
         function initMap() {
             var directionsService = new google.maps.DirectionsService;
             var directionsDisplay = new google.maps.DirectionsRenderer;
@@ -17,28 +17,35 @@
             });
         }
 
+        $scope.waypts = [];
+
         function calculateAndDisplayRoute(directionsService, directionsDisplay, myStops) {
-            var waypts = [];
-            
-            for (var i = 1; i < myStops.length-1; i++) {
-               
-                    waypts.push({
-                        location: `place_id:${myStops.PlaceId}`,
-                        stopover: true
-                    });
+
+            for (var i = 1; i < myStops.length - 1; i++) {
+
+                $scope.waypts.push({
+                    location: `place_id:${myStops[i].PlaceId}`,
+                    stopover: true
+                });
             }
 
-            var end = $rootScope.myStops.length -1;
+            var end = $rootScope.myStops.length - 1;
             $scope.startPoint = $rootScope.myStops[0].PlaceId;
             $scope.endPoint = $rootScope.myStops[end].PlaceId;
+
+            console.log("waypts", $scope.waypts);
+            console.log("startPoint", $scope.startPoint);
+            console.log("endPoint", $scope.endPoint);
 
             directionsService.route({
                 origin: `place_id:${$scope.startPoint}`,
                 destination: `place_id:${$scope.endPoint}`,
-                waypoints: waypts,
+                waypoints: $scope.waypts,
                 optimizeWaypoints: true,
                 travelMode: 'DRIVING'
-            }, function (response, status) {
+            },
+            
+            function (response, status) {
                 if (status === 'OK') {
                     directionsDisplay.setDirections(response);
                     var route = response.routes[0];
@@ -55,6 +62,7 @@
                     }
                 } else {
                     window.alert('Directions request failed due to ' + status);
+                    console.log(directionsService.route)
                 }
             });
         }

@@ -1,4 +1,6 @@
-﻿<div>
+﻿<img src="/app/NashvilleSkyline.jpg" id="loginInBackground" />
+
+<!--<div>
     <h3>Sign Up</h3>
 
     <input type="text" id="Email" placeholder="Email" ng-model="Email" />
@@ -6,4 +8,30 @@
     <input type="text" id="ConfirmPassword" placeholder="ConfirmPassword" ng-model="ConfirmPassword" />
     <input type="button" value="Sign Up" class="btn-default" ng-click="signUp()" />
     <a href="#!/login">Login</a>
+</div>-->
+
+<div class="container, col-md-12" id="signBox">
+    <h1 id="nashTitle" class="text-center">Nights Out Nashville</h1>
+
+    <h1 class="text-center">Sign Up</h1>
+
+    <form class="text-center">
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="email" id="Email" placeholder="Email or username" ng-model="Email">
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="Password" placeholder="Password" ng-model="Password">
+        </div>
+        <div class="form-group">
+            <label for="ConfirmPassword">Confirm Password:</label>
+            <input type="password" id="ConfirmPassword" placeholder="ConfirmPassword" ng-model="ConfirmPassword"/>
+        </div>
+        <div>
+            <input type="button" value="Sign Up" class="btn btn-warning" ng-click="signUp()" />
+            <a href="#!/login"><input type="button" value="Login" class="btn btn-primary" ng-click="signUp()" />
+</a>
+        </div>
+    </form>
 </div>

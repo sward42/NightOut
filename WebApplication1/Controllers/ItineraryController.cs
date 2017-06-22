@@ -19,9 +19,9 @@ namespace WebApplication1.Controllers
 
         [Route("api/itinerary")]
         [HttpPost]
-        public void AddItinerary(Itinerary newItinerary)
+        public int AddItinerary(Itinerary newItinerary)
         {
-            _itineraryRepository.SaveItinerary(newItinerary);
+            return _itineraryRepository.SaveItinerary(newItinerary);
 
         }
 

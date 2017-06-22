@@ -1,0 +1,18 @@
+﻿<h2>12 South</h2>
+<div>
+    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+    <div id="map" style="width: 800px; height:800px"></div>
+</div>
+<div ng-repeat="place in places">
+    <p>{{place.name}}</p>
+    <p>{{place.formatted_address}}</p>
+    <p>Rating: {{place.rating}}</p>
+    <p>Price Level: {{place.price_level}}</p>
+
+    <!--<select ng-model="neighborhoodSelect">
+        <option value="General" ng-selected>General</option>
+        <option value="12 South">12 South</option>
+    </select>-->
+    <input type="button" value="Save" ng-click="addDestination(place)" />
+</div>
+<input type="button" value="Create Itinerary" ng-click="itineraryPage()" />

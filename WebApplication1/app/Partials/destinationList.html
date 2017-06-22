@@ -1,0 +1,44 @@
+﻿<!--<h2>My Saved Destinations</h2>
+<div>
+    <input type="text" placeholder="Search you Destinations" ng-model="searchText" id="search" />
+    <button ng-click="clear()">Clear Search</button>
+</div>-->
+
+<div class="container" id="itSearchbar">
+    <div class="row">
+        <div class="col-md-3">
+            <h2>Places to Go</h2>
+        </div>
+        <div class="col-md-5 col-md-offset-4">
+            <input type="text" placeholder="Search you Destinations" ng-model="searchText" id="search" />
+            <button class="btn btn-default" ng-click="clear()">Clear Search</button>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-5 col-md-offset-1 itDiv" ng-repeat="place in response | filter: searchText ">
+
+            <h3>{{place.Name}}</h3>
+            <h4>{{place.Address}}</h4>
+            <h4>Neighborhood: {{place.Neighborhood}}</h4>
+            <h4 ng-hide="place.Rating == 0 || place.Rating == null">Rating: {{place.Rating}}</h4>
+            <h4 ng-show="place.Rating == 0 || place.Rating == null">Rating: None</h4>
+            <h4 ng-hide="place.PriceLevel == 0 || place.PriceLevel == null">Price Level: {{place.PriceLevel}}</h4>
+            <h4 ng-show="place.PriceLevel == 0 || place.PriceLevel == null">Price Level: Unavailable</h4>
+
+            <input type="button" class="btn btn-danger" value="Delete" ng-click="deletePlace(place.Id)" />
+        </div>
+    </div>
+</div>
+
+<!--<div ng-repeat="place in response | filter: searchText ">
+
+    <p>{{place.Name}}</p>
+    <p>{{place.Address}}</p>
+    <p>{{place.Neighborhood}}</p>
+    <p>Rating: {{place.Rating}}</p>
+    <p>Price Level: {{place.PriceLevel}}</p>
+    <input type="button" value="Delete" ng-click="deletePlace(place.Id)" />
+</div>-->

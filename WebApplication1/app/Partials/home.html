@@ -1,14 +1,97 @@
-﻿<div>Welcome Home</div>
+﻿
+<div class="container">
+    <div>
+        <div class="col-md-1, col-md-offset-11"><input type="button" value="logout" class="btn btn-danger" ng-click="logout()" /></div>
+    </div>
+</div>
 
+<div class="container">
+    <div class="row">
+        <div class="col-md-7">
+            <h2>Search for Nashville Bars and Restaurants</h2>
+            <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+        </div>
+        <div class="col-md-4, col-md-offset-1" >
+            <h2>Save Places...<br />That You Will Eventually Forget</h2>
+        </div>
+    </div>
+</div>
+
+
+<div id="searchDiv" class="container">
+    <div class="row">
+        <div class="col-md-7">
+            <div id="map" style="width: 600px; height:600px"></div>
+        </div>
+        <div class="col-md-4, col-md-offset-1 searchPlacesDiv" >
+            <div class="placeContainer" ng-repeat="place in places">
+                <h4>{{place.name}}</h4>
+                <p>{{place.formatted_address}}</p>
+                <p ng-hide="place.Rating == 0 || place.Rating == null">Rating: {{place.Rating}}</p>
+                <p ng-show="place.Rating == 0 || place.Rating == null">Rating: None</p>
+                <p ng-hide="place.PriceLevel == 0 || place.PriceLevel == null">Price Level: {{place.PriceLevel}}</p>
+                <p ng-show="place.PriceLevel == 0 || place.PriceLevel == null">Price Level: Unavailable</p>
+
+                <select ng-model="neighborhoodSelect">
+                    <option value="General" ng-selected>General</option>
+                    <option value="12 South">12 South</option>
+                    <option value="8th Ave S">8th Ave S</option>
+                    <option value="Berry Hill">Berry Hill</option>
+                    <option value="Charlotte Ave">Charlotte Ave</option>
+                    <option value="Downtown">Downtown</option>
+                    <option value="East Nashville">East Nashville</option>
+                    <option value="Germantown">Germantown</option>
+                    <option value="Green Hills">Green Hills</option>
+                    <option value="The Gulch">The Gulch</option>
+                    <option value="Hillsboro">Hillsboro</option>
+                    <option value="Midtown">Midtown</option>
+                    <option value="The Nations">The Nations</option>
+                    <option value="SoBro">SoBro</option>
+                    <option value="Sylvan Park">Sylvan Park</option>
+                    <option value="West End">West End</option>
+                </select>
+                <input type="button" class="btn-sm btn-success" value="Save" ng-click="addDestination(place)" />
+            </div>
+        </div>
+    </div>
+</div>
+<!--<input type="button" value="Create Itinerary" ng-click="itineraryPage()" />-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<div>
+    <input type="button" value="Search Nashville" class="btn-default" ng-click="getMap()" />
+</div>-->
+
+<!--<h3>Search by Neighborhoods</h3>
 <div>
-    <input type="text" placeholder="Enter Location" id="searchLocation" ng-model="SearchText"/>
-    <input type="button" value="Bar List" id="searchBtn" class="btn-default" ng-click="searchApi()"/>
-</div>
+    <h4><a href="#!/12South">12 South</a></h4>
+    <h4><a href="#!/8thAveS">8th Ave South</a></h4>
+    <h4><a href="#!/berryHill">Berry Hill</a></h4>
+    <h4><a href="#!/charlotteAve">Charlotte Ave</a></h4>
+    <h4><a href="#!/downtown">Downtown</a></h4>
+    <h4><a href="#!/eastNashville">East Nashville</a></h4>
+    <h4><a href="#!/germantown">Germantown</a></h4>
+    <h4><a href="#!/greenHills">Green Hills</a></h4>
+    <h4><a href="#!/gulch">The Gulch</a></h4>
+    <h4><a href="#!/Hillsboro">Hillsboro</a></h4>
+    <h4><a href="#!/midtown">Midtown</a></h4>
+    <h4><a href="#!/nations">The Nations</a></h4>
+    <h4><a href="#!/soBro">SoBro</a></h4>
+    <h4><a href="#!/westEnd">West End</a></h4>
+</div>-->
 
-<div id="barListOutput" ng-repeat="bar in barData" >
-    
-        <p>{{bar.business_name}}</p>
-    
-</div>
-<input type="button" value="Search Map" class="btn-default" ng-click="getMap()" />
-<input type="button" value="logout" class="btn-default" ng-click="logout()" />
+

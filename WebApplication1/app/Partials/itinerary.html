@@ -1,23 +1,96 @@
-﻿<h3>My Places</h3>
-<div ng-repeat="place in response">
-    
-    <p>{{place.Name}}</p>
-    <input type="button" value="Add to Itinerary" ng-click="addStop(place)" />
-    <input type="button" value="Delete" ng-click="deletePlace(place.Id)" />
+﻿<!--<div  ng-show="!selectPlaces">
+    <h2>Create a New Itinerary</h2>
+    Name your Itinerary: <input type="text" ng-model="myItinerary.ItineraryName" />
+    Select a Date: <input type="date" name="ItineraryDate" ng-model="myItinerary.ItineraryDate" />
+    <input type="button" value="Add Stops" ng-click="saveMyItinerary(myItinerary); addPlaces()" />
+
+</div>-->
+
+<div id="itNew" class="container"  ng-show="!selectPlaces">
+    <div class="row">
+        <form id="itCreate" class="col-md-6 col-md-offset-3 text-center">
+            <h2>Create a New Itinerary</h2>
+            <div class="form-group">
+                <label for="itName">Name Your Itinerary:</label>
+                <input type="text" id="itName" placeholder="Title" ng-model="myItinerary.ItineraryName">
+            </div>
+            <div class="form-group">
+                <label for="itDate">Select a Date:</label>
+                <input type="date" id="itDate" ng-model="myItinerary.ItineraryDate">
+            </div>
+            <input type="button" class="btn btn-info" value="Add Stops" ng-click="saveMyItinerary(myItinerary); addPlaces()" />
+        </form>
+    </div>
 </div>
-<div>
-    <h3>My Itinerary</h3>
-    <ol >
-        <li ng-repeat="stop in myStops">{{stop.Name}}</li>
-    </ol>
-    <input type="button" value="Save Itinerary" ng-click="saveMyItinerary(myStops, myItinerary)" />
-    <input type="button" value="Map My Route" ng-click="goToCrawlMap()" />
+
+
+
+<div class="container itNewPlaces" ng-show="selectPlaces">
+    <div class="row">
+        <div class="col-md-5 col-md-offset-7">
+            <h3>My Places</h3>
+            <input type="text" placeholder="Search you Destinations" ng-model="searchText" id="search" />
+            <button ng-click="clear()">Clear Search</button>
+        </div>
+    </div>
 </div>
 
-<h2>Crawl Map</h2>
+<div class="container" ng-show="selectPlaces">
+    <div class="row">
+        <div id="itTemplate" class="col-md-5 text-center">
+            <div class="detailTitle">
+                <h1>{{myItinerary.ItineraryName}}</h1>
+                <h2 ng-show="!myItinerary.ItineraryName">My Itinerary</h2>
+                <h4>{{myItinerary.ItineraryDate | date: "MM/dd/yyyy"}}</h4>
+                <h4 ng-show="!myItinerary.ItineraryDate">Date of Night Out</h4>
+            </div>
 
-<div id="map" style="width: 800px; height:800px"></div>
+            <div class="detailPlace" ng-repeat="stop in myStops">
+                <h4 ng-show="!myStops.length">Add Stops </h4>
+                <h3>{{stop.Name}}</h3>
+                <h4>{{stop.Address}}</h4>
+                <h4 ng-hide="stop.Rating == 0 || stop.Rating == null">Rating: {{stop.Rating}}</h4>
+                <h4 ng-show="stop.Rating == 0 || stop.Rating == null">Rating: None</h4>
+                <h4 ng-hide="stop.PriceLevel == 0 || stop.PriceLevel == null">Price Level: {{stop.PriceLevel}}</h4>
+                <h4 ng-show="stop.PriceLevel == 0 || stop.PriceLevel == null">Price Level: Unavailable</h4>
+                
+                <button class="btn-sm btn-danger" ng-click="removeStop(stop)">Remove</button>
+                
+            </div>
+            <input type="button" class="btn btn-success btnPadding" value="Save Itinerary" ng-click="toItineraries()" />
+            <!--<input type="button" value="Map My Route" ng-click="goToCrawlMap()" />-->
+            <!--<input type="button" value="Map My Route" id="submit" ng-click="showMap()" />-->
+        </div>
 
-<div id="directions-panel"></div>
+        <div class="col-md-5 col-md-offset-2 searchPlacesDiv">
 
-<input type="button" value="Show Route" id="submit" />
+            <div class="placeContainer" ng-repeat="place in response | filter: searchText">
+
+                <h4>{{place.Name}}</h4>
+                <p>{{place.Address}}</p>
+                <p>Neighborhood: {{place.Neighborhood}}</p>
+                <p ng-hide="place.Rating == 0">Rating: {{place.Rating}}</p>
+                <p ng-show="place.Rating == 0">Rating: None</p>
+                <p ng-hide="place.PriceLevel == 0">Price Level: {{place.PriceLevel}}</p>
+                <p ng-show="place.PriceLevel == 0">Price Level: Unavailable</p>
+                <input type="button"  class="btn-sm btn-success" value="Add" ng-click="addStop(place)" />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <!--<div ng-show="myRoute">
+        <h2>Crawl Map</h2>
+
+        <div id="map" style="width: 800px; height:800px"></div>
+
+        <div id="directions-panel"></div>
+
+    </div>-->

@@ -23,13 +23,16 @@ namespace WebApplication1.DAL.Repositories
 
         public IEnumerable<Itinerary> GetAllItineraries()
         {
+            var destinations = _context.Destinations;
             return _context.Itineraries;
         }
 
-        public void SaveItinerary(Itinerary itinerary)
+        public int SaveItinerary(Itinerary itinerary)
         {
             _context.Itineraries.Add(itinerary);
             _context.SaveChanges();
+
+            return itinerary.Id;
         }
         public Itinerary GetSingleItinerary(int id)
         {
