@@ -4,26 +4,26 @@
             <h2>Search for Nashville Bars and Restaurants</h2>
             <input id="pac-input" class="controls" type="text" placeholder="Search Box">
         </div>
-        <div class="col-md-4, col-md-offset-1">
+        <div class="col-md-4, col-md-offset-1" ng-show="placesSearch">
             <h3>Save Places...<br />That You Won't Remember in the Morning</h3>
         </div>
     </div>
 </div>
 
 
-<div id="searchDiv" class="container">
+<div id="searchDiv" class="container" >
     <div class="row">
         <div class="col-md-7">
             <div id="map" style="width: 600px; height:600px"></div>
         </div>
-        <div class="col-md-4, col-md-offset-1 searchPlacesDiv">
+        <div class="col-md-4, col-md-offset-1 searchPlacesDiv" ng-show="placesSearch">
             <div class="placeContainer" ng-repeat="place in places">
                 <h4>{{place.name}}</h4>
                 <p>{{place.formatted_address}}</p>
-                <p ng-hide="place.Rating == 0 || place.Rating == null">Rating: {{place.Rating}}</p>
-                <p ng-show="place.Rating == 0 || place.Rating == null">Rating: None</p>
-                <p ng-hide="place.PriceLevel == 0 || place.PriceLevel == null">Price Level: {{place.PriceLevel}}</p>
-                <p ng-show="place.PriceLevel == 0 || place.PriceLevel == null">Price Level: Unavailable</p>
+                <p ng-hide="place.rating == 0 || place.rating == null">Rating: {{place.rating}}</p>
+                <p ng-show="place.rating == 0 || place.rating == null">Rating: None</p>
+                <p ng-hide="place.price_level == 0 || place.price_level == null">Price Level: {{place.price_level}}</p>
+                <p ng-show="place.price_level == 0 || place.price_level == null">Price Level: Unavailable</p>
 
                 <!--<select ng-model="neighborhoodSelect">
                     <option value="General" ng-selected>General</option>

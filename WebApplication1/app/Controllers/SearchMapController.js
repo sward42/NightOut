@@ -4,8 +4,20 @@
 
         $rootScope.showNavbar();
 
+        $scope.placesSearch = false;
+
         $scope.neighborhoodSelect = "General";
         $('#pac-input').focus();
+
+        $scope.changeView = function () {
+            $scope.placesSearch = true;
+        }
+
+        $("#pac-input").keypress(function (event) {
+            if (event.which == 13) {
+                $scope.changeView();
+            }
+        });
 
         function initAutocomplete() {
             $scope.map = new google.maps.Map(document.getElementById('map'), {
