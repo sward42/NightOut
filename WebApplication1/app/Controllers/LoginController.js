@@ -1,8 +1,12 @@
-﻿app.controller("LoginController", ["$scope", "$http", "$location",
-    function ($scope, $http, $location) {
+﻿app.controller("LoginController", ["$scope", "$http", "$location", "$rootScope",
+    function ($scope, $http, $location, $rootScope) {
 
         $scope.username = "seb@nss.com";
         $scope.password = "Seb123!";
+
+        $rootScope.user = $scope.username;
+
+        $('.navbar').hide();
 
         console.log("first login controller check")
         $scope.login = function () {
@@ -27,7 +31,13 @@
                 $http.defaults.headers.common['Authorization'] = `bearer ${result.data.access_token}`;
 
                 $location.path("/home");
+
+                $rootScope.showNavbar();
             });
+        }
+
+        $rootScope.showNavbar = function () {
+            $('.navbar').fadeIn();
         }
     }
 ]);

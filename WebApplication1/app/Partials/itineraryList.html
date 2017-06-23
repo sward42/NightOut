@@ -13,7 +13,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-3 col-md-offset-1 itDiv" ng-repeat="place in myItineraries | filter: searchText ">
+            <div class="col-md-3 col-md-offset-1 itDiv" ng-repeat="place in myItineraries | filter: searchText | orderBy: 'ItineraryDate'">
 
                 <h3>{{place.ItineraryName}}</h3>
                 <h4>{{place.ItineraryDate | date: "MM/dd/yyyy"}}</h4>

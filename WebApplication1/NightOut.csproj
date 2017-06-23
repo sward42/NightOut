@@ -309,6 +309,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\AddScreenshot.PNG" />
     <Content Include="app\app.js" />
     <Content Include="app\Controllers\CrawlMapController.js" />
     <Content Include="app\Controllers\DestinationListController.js" />
@@ -322,6 +323,7 @@
     <Content Include="app\Controllers\SignUpController.js" />
     <Content Include="app\CSS\MyStyles.css" />
     <Content Include="app\Factories\GoogleMapsFactory.js" />
+    <Content Include="app\itineraryScreenshot.PNG" />
     <Content Include="app\MapPartials\12South.html" />
     <Content Include="app\MapPartials\8thAveS.html" />
     <Content Include="app\MapPartials\BerryHill.html" />

@@ -27,8 +27,12 @@
 }
 
 .navbar {
-    background-color: transparent;
-    border-color: transparent;
+    /*background-color: transparent;
+    border-color: transparent;*/
+}
+
+#logo {
+    color: lightgray;
 }
 
 #loginBox, #signBox {
@@ -48,6 +52,27 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 /*Home Page Styling*/
+
+.itScreenshot {
+    width: 95%;
+    height: 95%;
+}
+
+.stepBorder {
+     
+}
+
+.logoutBtn {
+    margin-top: 1.5%;
+}
+
+.startButton {
+    margin-top: 5%;
+}
+
+.startGuide {
+    margin-top: 2%;
+}
 
 .searchPlacesDiv{
     height: 700px;
@@ -85,7 +110,7 @@ h1,h2,h3,h4,h5,h6 {
 
 .itDiv {
     margin: 1%;
-    padding-left: 5%;
+    
 }
 
 #itSearchbar {
