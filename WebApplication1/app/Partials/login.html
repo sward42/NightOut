@@ -3,19 +3,20 @@
 <!--Login div-->
 <div class="container, col-md-12" id="loginBox">
   <h1 id="nashTitle" class="text-center">Nights Out Nashville</h1>
+    <h3 class="text-center ">For When You'd Rather Drink Than Think on Your Feet </h3>
     
-    <form class="text-center">
+    <form class="text-center formPadding">
         <div class="form-group">
-            <label for="username">Username</label>
+            <label for="username">Username:</label>
             <input type="email" id="username" placeholder="Email or username" ng-model="username">
         </div>
         <div class="form-group">
-            <label for="password">Password</label>
+            <label for="password">Password:</label>
             <input type="password" id="password" placeholder="Password" ng-model="password">
         </div>
         
        
-        <button type="submit" class="btn btn-primary" ng-click="login()">Submit</button>
+        <button type="submit" class="btn btn-primary" ng-click="login()">Login</button>
         <a href="#!/signup"><input type="button" class="btn btn-warning" value="Sign Up"></a>
     </form>
 </div>
