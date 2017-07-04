@@ -12,7 +12,7 @@ Create a new itinerary to which you can add any of your saved places.
 ![Create Itinerary](https://raw.githubusercontent.com/sward42/NightOut/master/WebApplication1/app/newItScreenshot.PNG)
 
 View and manage your itineraries.
-![View Details](https://raw.githubusercontent.com/sward42/NightOut/master/WebApplication1/app/allItinerariesScreenshot.PNG)
+![View Details](https://raw.githubusercontent.com/sward42/NightOut/master/WebApplication1/app/allltinerariesScreenshot.PNG)
 
 ### Technologies 
 
