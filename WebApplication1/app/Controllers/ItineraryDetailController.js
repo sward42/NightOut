@@ -1,6 +1,8 @@
 ﻿app.controller("ItineraryDetailController", ["$scope", "$rootScope", "$http", "$location", "$routeParams",
     function ($scope, $rootScope, $http, $location, $routeParams) {
 
+        $rootScope.showNavbar();
+
         $scope.selectedItinerary = {};
         $scope.myStops = [];
         let itineraryId = $routeParams.id;

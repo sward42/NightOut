@@ -2,8 +2,22 @@
     ["$scope", "$rootScope", "$http", "$location", "GoogleMapsFactory",
     function ($scope, $rootScope, $http, $location, GoogleMapsFactory) {
 
+        $rootScope.showNavbar();
+
+        $scope.placesSearch = false;
+
         $scope.neighborhoodSelect = "General";
         $('#pac-input').focus();
+
+        $scope.changeView = function () {
+            $scope.placesSearch = true;
+        }
+
+        $("#pac-input").keypress(function (event) {
+            if (event.which == 13) {
+                $scope.changeView();
+            }
+        });
 
         function initAutocomplete() {
             $scope.map = new google.maps.Map(document.getElementById('map'), {
@@ -36,7 +50,7 @@
             // Create the search box and link it to the UI element.
             var input = document.getElementById('pac-input');
             var searchBox = new google.maps.places.SearchBox(input);
-            $scope.map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+            //$scope.map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
             // Bias the SearchBox results towards current map's viewport.
             $scope.map.addListener('bounds_changed', function () {
@@ -132,6 +146,15 @@
                 console.log("save result", result)
             });
         };
+
+        $scope.removePlace = function (place) {
+            for (var i = 0; i < $scope.places.length ; i++) {
+                if ($scope.places[i].id == place.id) {
+                    $scope.places.splice(i, 1);
+                    return false;
+                }
+            }
+        }
 
         $scope.itineraryPage = function () {
             $location.path("/itinerary");

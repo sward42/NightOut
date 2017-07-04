@@ -2,6 +2,8 @@
     ["$scope", "$rootScope", "$http", "$location", "GoogleMapsFactory",
     function ($scope, $rootScope, $http, $location, GoogleMapsFactory) {
 
+        $rootScope.showNavbar();
+
         $scope.searchText = "";
 
         $scope.getMyPlaces = function () {
